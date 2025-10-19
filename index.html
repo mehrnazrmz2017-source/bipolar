@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>همراه روان - اپلیکیشن مراقبت سلامت</title>
+    <style>
+        /* تمام استایل‌های قبلی شما اینجا قرار می‌گیرد */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Vazir', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        h1, h2, h3 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        button {
+            background: #4ecdc4;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            font-family: 'Vazir';
+            font-size: 14px;
+        }
+        
+        /* بقیه استایل‌ها... */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- صفحه اصلی -->
+        <div id="home" class="card">
+            <div style="text-align:center; background:linear-gradient(135deg, #ff6b6b, #ee5a52); color:white; padding:20px; border-radius:15px; margin-bottom:20px;">
+                <h1>🌈 همراه روان</h1>
+                <p>اپلیکیشن مراقبت و پایش سلامت</p>
+            </div>
+            
+            <div style="text-align:center; margin-top:20px;">
+                <button onclick="showSection('patient')" style="background:linear-gradient(135deg, #4ecdc4, #44a08d)">👤 ورود بیمار</button>
+                <button onclick="showSection('doctor')" style="background:linear-gradient(135deg, #ff6b6b, #ee5a52)">🏥 ورود پزشک</button>
+            </div>
+
+            <!-- بخش اطلاعات ابری -->
+            <div style="background:linear-gradient(135deg, #a8edea, #fed6e3); padding:15px; border-radius:10px; margin-top:20px; text-align:center;">
+                <h4>☁️ نسخه ابری</h4>
+                <p style="font-size:14px; color:#666; margin:10px 0;">
+                    داده‌های شما به طور ایمن ذخیره می‌شوند
+                </p>
+                <button onclick="showCloudInfo()" style="background:linear-gradient(135deg, #a8edea, #fed6e3); color:#333; border:2px solid #4ecdc4;">
+                    ℹ️ اطلاعات ذخیره‌سازی
+                </button>
+            </div>
+        </div>
+
+        <!-- بخش بیمار -->
+        <div id="patientSection" class="card" style="display:none;">
+            <h2>👤 پنل بیمار</h2>
+            <!-- محتوای بخش بیمار -->
+            <div style="text-align:center; margin-top:20px;">
+                <button onclick="showSection('home')">🏠 بازگشت</button>
+            </div>
+        </div>
+
+        <!-- بخش پزشک -->
+        <div id="doctorSection" class="card" style="display:none;">
+            <h2>🏥 پنل پزشک</h2>
+            <!-- محتوای بخش پزشک -->
+            <div style="text-align:center; margin-top:20px;">
+                <button onclick="showSection('home')">🏠 بازگشت</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // داده‌های برنامه
+        let patients = JSON.parse(localStorage.getItem('patients') || '[]');
+        let doctors = JSON.parse(localStorage.getItem('doctors') || '[]');
+        let currentUser = null;
+
+        // نمایش بخش‌های مختلف
+        function showSection(section) {
+            document.getElementById('home').style.display = section === 'home' ? 'block' : 'none';
+            document.getElementById('patientSection').style.display = section === 'patient' ? 'block' : 'none';
+            document.getElementById('doctorSection').style.display = section === 'doctor' ? 'block' : 'none';
+        }
+
+        // نمایش اطلاعات ذخیره‌سازی
+        function showCloudInfo() {
+            alert(`💾 سیستم ذخیره‌سازی:\n\n✅ داده‌ها در مرورگر شما ذخیره می‌شوند\n✅ در صورت پاک کردن cache داده‌ها از بین می‌روند\n✅ برای نگهداری طولانی‌مدت از قابلیت export استفاده کنید\n\n👥 بیماران: ${patients.length}\n🏥 پزشکان: ${doctors.length}`);
+        }
+
+        // توابع اصلی برنامه...
+        // [کدهای اصلی مدیریت بیماران و پزشکان]
+
+        console.log('🚀 همراه روان - نسخه GitHub Pages راه‌اندازی شد');
+    </script>
+</body>
+</html>
